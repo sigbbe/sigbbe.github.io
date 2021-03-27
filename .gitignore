@@ -217,7 +217,7 @@ hs_err_pid*
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
 
 # Thumbnails
 ._*
@@ -523,3 +523,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.toptal.com/developers/gitignore/api/vscode,python,java,kotlin,pycharm+all,intellij+all,webstorm+iml,eclipse,macos,windows,linux
+
+*node_modules/
+*package-lock.json
