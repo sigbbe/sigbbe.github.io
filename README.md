@@ -1,2 +1,2 @@
 # sigbbe.github.io
-This is my personal site hosted with github pages!
+This is my personal site hosted with github pages :3
