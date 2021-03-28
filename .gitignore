@@ -526,3 +526,4 @@ $RECYCLE.BIN/
 
 *node_modules/
 *package-lock.json
+src/misc
