@@ -1,0 +1,95 @@
+@mixin animate($name, $delay, $duration, $iteration, $direction)
+    -webkit-animation-duration: $duration
+    -moz-animation-duration: $duration
+    -o-animation-duration: $duration
+    animation-duration: $duration
+    -webkit-animation-delay: $delay
+    -moz-animation-delay: $delay
+    -o-animation-delay: $delay
+    animation-delay: $delay
+    -webkit-animation-iteration-count: $iteration
+    -moz-animation-iteration-count: $iteration
+    -o-animation-iteration-count: $iteration
+    animation-iteration-count: $iteration
+    -webkit-animation-name: $name
+    -moz-animation-name: $name
+    -o-animation-name: $name
+    animation-name: $name
+    -webkit-animation-direction: $direction
+    -moz-animation-direction: $direction
+    -o-animation-direction: $direction
+    animation-direction: $direction
+
+@mixin keyframes($animationName)
+    @-webkit-keyframes #{$animationName}
+        @content
+    @-moz-keyframes #{$animationName}
+        @content
+    @-o-keyframes #{$animationName}
+        @content
+    @keyframes #{$animationName}
+        @content
+
+@mixin caretAnime
+    @include animate(caretAnime, 0s, 2s, infinite, initial)
+
+@include keyframes(caretAnime)
+    0%
+        border-right: 10px solid black
+    100%
+        border-right: 10px
+
+.Animation-parent
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+
+.Animation-heading-h1
+    border-right: none
+    color: black 
+    padding: 5px 0
+    line-height: 100%
+    cursor: text
+    @include caretAnime
+
+
+.Non-selectable
+    -webkit-user-select: none
+       -moz-user-select: none
+        -ms-user-select: none
+            user-select: none
+
+@include keyframes(pulsate)
+    from
+        height: 5px
+        width: 5px
+        opacity: 1
+    to
+        width: 50px
+        height: 50px
+        opacity: 0
+
+@include keyframes(test)
+    from
+        background-color: red
+    to
+        background-color: green
+
+@mixin pulsate
+    @include animate(pulsate, 0s, 1s, 2, normal)
+
+#pulsate
+    @include pulsate
+    position: relative
+    margin: auto
+    display: flex
+    border: 5px solid #000
+    border-radius: 50px
+    position: absolute
+    height: 50px
+    width: 50px
+
+.active
+    border: 2px solid black
+
