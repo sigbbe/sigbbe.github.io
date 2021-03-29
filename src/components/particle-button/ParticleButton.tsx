@@ -1,26 +1,10 @@
 
-import React, { FunctionComponent } from 'react';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-import anime from 'animejs/lib/anime.es.js';
+import React, { FunctionComponent, KeyboardEvent, MouseEvent } from 'react';
 import './ParticleButton.sass';
 
-const uwu = anime({
-    targets: '.testing',
-    keyframes: [
-        {translateX: 250},
-        {translateY: 40},
-        {translateX: 0},
-        {translateY: 0}
-    ],
-    duration: 4000,
-    easing: 'easeOutElastic(1, .8)',
-    loop: true
-});
-
+const str = 'Sigbjørn Berdal';
 
 const ParticleButton: FunctionComponent = () => {
-    let playing = false;
     const anime = (evt: { preventDefault: () => void; target: EventTarget; }) => {
         evt.preventDefault();
         const t: HTMLElement = evt.target as HTMLElement;
@@ -28,24 +12,44 @@ const ParticleButton: FunctionComponent = () => {
         if (p === null) {
             return;
         }
-        if (playing) {
-            uwu.pause();
-        } else {
-            uwu.play();
-        }
-        playing = !playing;
-        if (! p.classList.contains('active')) {
+        console.log(p.classList);
+        if (!p.classList.contains('active')) {
             p.classList.add('active');
             setTimeout(() => {
                 p.classList.remove('active');
             }, 2 * 1000);
         }
     }
+    // const Heading = () => {
+    //     const jsx = <h1 className={'Animation-heading-h1'} />;
+    //     for (const char of str) {
+    //         console.log(char);
+    //     }
+    //     console.log(jsx)
+    //     return jsx;
+    // }
+    // Heading();
+    let canEdit = false;
+    const skrt = (evt: MouseEvent<HTMLHeadingElement>) => {
+        evt.preventDefault();
+        canEdit = true;
+    }
+    
+    const skrtskrt = (evt: KeyboardEvent<HTMLHeadingElement>) => {
+        evt.preventDefault();
+        console.log(canEdit);
+        console.log(evt.code == 'sklføsf');
+    }
 
+    
     return (
-        <div className={'parent'}>
-            <button className={'hero-btn'} onClick={anime}>Hello, World!</button>
-            <div className={'testing'} />
+        <div className={'Animation-parent'}>
+            {/*<button className={'hero-btn'} onClick={anime}>Hello, World!</button>*/}
+            {/* <div id={'pulsate'} onClick={anime} /> */}
+            <h1 className={'Animation-heading-h1 Non-selectable'}
+                onDoubleClick={(e) => skrt(e)}
+                onKeyDown={(e) => skrtskrt(e)}
+            >{str}</h1>
         </div>
     );
 }

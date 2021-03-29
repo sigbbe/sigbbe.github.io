@@ -526,4 +526,5 @@ $RECYCLE.BIN/
 
 *node_modules/
 *package-lock.json
+*.vscode/
 src/misc

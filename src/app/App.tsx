@@ -6,7 +6,6 @@ import './App.sass';
 const App: FunctionComponent = () => {
     return (
         <div className={'Flex-center Flex-column Full-size'}>
-            <h1>Sigbjørn Berdal</h1>
             <ParticleButton/>
         </div>
     );
