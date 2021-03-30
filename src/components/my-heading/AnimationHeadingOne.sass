@@ -68,32 +68,3 @@
 
 .active
     border: 2px solid black
-
-
-@include keyframes(flicker)
-    0%
-        visibility: visible
-    50%
-        visibility: hidden
-
-
-@mixin flicker
-    @include animate(flicker, 2s, 1s, infinite, normal)
-
-#Animation-heading
-    position: relative
-    display: flex
-    justify-content: center
-    align-items: center
-    flex-direction: row
-    width: 50%
-
-#Animation-heading > *
-    color: black !important
-
-#Caret
-    @include flicker
-    visibility: hidden
-    display: inline
-    font-size: 1.2em
-    height: fit-content

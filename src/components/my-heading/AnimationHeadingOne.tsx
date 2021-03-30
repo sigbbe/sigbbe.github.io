@@ -1,53 +1,84 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import { getAllForwardSeq } from '../../utils/sandbox/SandBox';
+import Caret from './caret/Caret';
 import './AnimationHeadingOne.sass';
-import {string} from "prop-types";
 
-const Caret = () =><p id={'Caret'}>{'|'}</p>;
+type TypingSpeeds = 1 | 2 | 3;
 
 export interface AnimationHeadingOneProps {
     title: string;
+    typingSpeed: TypingSpeeds;
 }
 
-const AnimationHeadingOne = ({title}: AnimationHeadingOneProps) => {
+const AnimationHeadingOne = ({title, typingSpeed}: AnimationHeadingOneProps): JSX.Element => {
     const [headingState, setHeadingState] = useState('');
+    const [caretState, updateCaretState] = useState(true);
+
+    const isTyping = () => {
+        updateCaretState(true);
+    };
+
+    const isNotTyping = () => {
+        updateCaretState(false);
+    };
+
+    let duration = 0;
+    if (typingSpeed === 1) {
+        duration = 1000;
+    } else if (typingSpeed === 2) {
+        duration = 200;
+    } else {
+        duration = 75;
+    }
+    const delay = 3000;
 
     const updateHeadingState = (newState: string) => {
         setHeadingState(newState);
-    }
-    const duration = 75;
+    };
+
     const writeMessage = (msg: string) => {
+        isTyping();
         const strings: string[] = getAllForwardSeq(msg);
         let index = 0;
         const interval = setInterval(() => {
-            if (index > strings.length) {
+            if (index > strings.length || strings[index] === undefined) {
                 clearInterval(interval);
+                return;
             }
-            console.log(strings.length + ", " + index)
-            updateHeadingState(strings[index]);
+            const withNextChar = strings[index];
+            updateHeadingState(withNextChar);
             index++;
         }, duration);
-    }
+        isNotTyping();
+    };
 
     const clearMessage = () => {
         setTimeout(() => {
-            console.log("------");
+            let textToDelete: string | null | undefined = document.getElementById('Animation-heading')?.children[0].textContent;
+            if (textToDelete === null || textToDelete === undefined ) {
+                return;
+            }
+            textToDelete = textToDelete?.replace('|', '');
             const interval = setInterval(() => {
-                const deletedSingleChar = headingState.substr(0, headingState.length - 1);
-                console.log(deletedSingleChar);
-                if (headingState.length > 0) {
-                    clearInterval(interval);
+                if (textToDelete === null || textToDelete === undefined) {
+                    return;
                 }
-                // console.log("headingState.length: " + headingState.length);
-                // console.log("deletedSingleChar: " + deletedSingleChar);
-                updateHeadingState(deletedSingleChar);
+                textToDelete = textToDelete.substring(0, textToDelete.length - 1);
+                const len = textToDelete.length;
+                updateHeadingState(textToDelete);
+                if (len < 1) {
+                    clearInterval(interval);
+                    return;
+                }
             }, duration);
-        }, title.length * duration + 1000);
-    }
+        }, duration * title.length + delay);
+    };
 
     useEffect(() => {
-        writeMessage(title);
-        clearMessage();
+        setTimeout(() => {
+            writeMessage(title);
+            clearMessage();
+        }, 3000);
     }, []);
 
     return (
@@ -55,9 +86,9 @@ const AnimationHeadingOne = ({title}: AnimationHeadingOneProps) => {
             id={'Animation-heading'}
             className={'Non-selectable'}
         >
-            <div>{headingState}<Caret /></div>
+            <div>{headingState}<Caret isTyping={caretState}/></div>
         </h1>
     );
-}
+};
 
 export default AnimationHeadingOne;
