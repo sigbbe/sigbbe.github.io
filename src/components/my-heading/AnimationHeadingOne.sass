@@ -30,30 +30,6 @@
     @keyframes #{$animationName}
         @content
 
-@mixin caretAnime
-    @include animate(caretAnime, 0s, 2s, infinite, initial)
-
-@include keyframes(caretAnime)
-    0%
-        border-right: 10px solid black
-    100%
-        border-right: 10px
-
-.Animation-parent
-    position: relative
-    display: flex
-    justify-content: center
-    align-items: center
-
-.Animation-heading-h1
-    border-right: none
-    color: black 
-    padding: 5px 0
-    line-height: 100%
-    cursor: text
-    @include caretAnime
-
-
 .Non-selectable
     -webkit-user-select: none
        -moz-user-select: none
@@ -93,3 +69,31 @@
 .active
     border: 2px solid black
 
+
+@include keyframes(flicker)
+    0%
+        visibility: visible
+    50%
+        visibility: hidden
+
+
+@mixin flicker
+    @include animate(flicker, 2s, 1s, infinite, normal)
+
+#Animation-heading
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: row
+    width: 50%
+
+#Animation-heading > *
+    color: black !important
+
+#Caret
+    @include flicker
+    visibility: hidden
+    display: inline
+    font-size: 1.2em
+    height: fit-content

@@ -1,10 +1,11 @@
+type MyStringArr = string [];
 
-export type DescribedFoo1 = {
-    description: string;
-    (someArg: number): boolean;
-};
+function getAllForwardSeq(msg: string): MyStringArr {
+    const _ret = new Array<string>();
+    for (let i = 1; i <= msg.length; i++) {
+        _ret.push(msg.substring(0, i));
+    }
+    return _ret;
+}
 
-export type DescribedFoo2 = {
-    description: string;
-    fn: (someArg: number) => boolean;
-};
+export { getAllForwardSeq };
