@@ -1,0 +1,62 @@
+@mixin animate($name, $delay, $duration, $iteration, $direction)
+    -webkit-animation-duration: $duration
+    -moz-animation-duration: $duration
+    -o-animation-duration: $duration
+    animation-duration: $duration
+    -webkit-animation-delay: $delay
+    -moz-animation-delay: $delay
+    -o-animation-delay: $delay
+    animation-delay: $delay
+    -webkit-animation-iteration-count: $iteration
+    -moz-animation-iteration-count: $iteration
+    -o-animation-iteration-count: $iteration
+    animation-iteration-count: $iteration
+    -webkit-animation-name: $name
+    -moz-animation-name: $name
+    -o-animation-name: $name
+    animation-name: $name
+    -webkit-animation-direction: $direction
+    -moz-animation-direction: $direction
+    -o-animation-direction: $direction
+    animation-direction: $direction
+
+@mixin keyframes($animationName)
+    @-webkit-keyframes #{$animationName}
+        @content
+    @-moz-keyframes #{$animationName}
+        @content
+    @-o-keyframes #{$animationName}
+        @content
+    @keyframes #{$animationName}
+        @content
+
+@include keyframes(flicker)
+    0%
+        opacity: 0
+    49%
+        opacity: 0
+    50%
+        opacity: 1
+
+@mixin flicker
+    @include animate(flicker, 0s, 1.33s, infinite, normal)
+
+#Animation-heading
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: row
+    width: 50%
+
+#Animation-heading > *
+    color: black !important
+
+#Caret
+    font-family: auto, serif
+    display: inline
+    font-size: 2em
+    height: fit-content
+
+#Caret.Not-typing
+    @include flicker
