@@ -55,6 +55,18 @@
 @mixin pulsate
     @include animate(pulsate, 0s, 1s, 2, normal)
 
+
+#Animation-heading
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: row
+    width: 100%
+
+#Animation-heading > *
+    color: black !important
+
 #pulsate
     @include pulsate
     position: relative

@@ -1,7 +1,7 @@
-import React, {useState, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { getAllForwardSeq } from '../../utils/sandbox/SandBox';
-import Caret from './caret/Caret';
 import './AnimationHeadingOne.sass';
+import Caret from './caret/Caret';
 
 type TypingSpeeds = 1 | 2 | 3;
 
@@ -10,9 +10,9 @@ export interface AnimationHeadingOneProps {
     typingSpeed: TypingSpeeds;
 }
 
-const AnimationHeadingOne = ({title, typingSpeed}: AnimationHeadingOneProps): JSX.Element => {
+const AnimationHeadingOne: FC<AnimationHeadingOneProps> = ({title, typingSpeed}: AnimationHeadingOneProps): JSX.Element => {
     const [headingState, setHeadingState] = useState('');
-    const [caretState, updateCaretState] = useState(true);
+    const [caretState, updateCaretState] = useState(false);
 
     const isTyping = () => {
         updateCaretState(true);
@@ -37,22 +37,23 @@ const AnimationHeadingOne = ({title, typingSpeed}: AnimationHeadingOneProps): JS
     };
 
     const writeMessage = (msg: string) => {
-        isTyping();
         const strings: string[] = getAllForwardSeq(msg);
         let index = 0;
         const interval = setInterval(() => {
+            isTyping();
             if (index > strings.length || strings[index] === undefined) {
                 clearInterval(interval);
+                isNotTyping();
                 return;
             }
             const withNextChar = strings[index];
             updateHeadingState(withNextChar);
             index++;
         }, duration);
-        isNotTyping();
     };
 
     const clearMessage = () => {
+        isTyping();
         setTimeout(() => {
             let textToDelete: string | null | undefined = document.getElementById('Animation-heading')?.children[0].textContent;
             if (textToDelete === null || textToDelete === undefined ) {
@@ -68,6 +69,7 @@ const AnimationHeadingOne = ({title, typingSpeed}: AnimationHeadingOneProps): JS
                 updateHeadingState(textToDelete);
                 if (len < 1) {
                     clearInterval(interval);
+                    isNotTyping();
                     return;
                 }
             }, duration);
@@ -78,6 +80,7 @@ const AnimationHeadingOne = ({title, typingSpeed}: AnimationHeadingOneProps): JS
         setTimeout(() => {
             writeMessage(title);
             clearMessage();
+            writeMessage(title);
         }, 3000);
     }, []);
 

@@ -7,7 +7,7 @@ export interface CaretInterface {
 
 const Caret: FC<CaretInterface> = ({ isTyping }: CaretInterface) => {
     return (
-        <p id={'Caret'} className={isTyping ? 'Not-typing' : undefined}>{'|'}</p>
+        <p id={'Caret'} className={isTyping ? undefined : 'Not-typing'}>{'|'}</p>
     );
 };
 
