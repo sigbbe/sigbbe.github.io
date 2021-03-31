@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import _ from 'lodash';
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import App from './app/App';
+
+_();
 
 ReactDOM.render(
   <StrictMode>
@@ -8,6 +12,3 @@ ReactDOM.render(
   </StrictMode>,
   document.getElementById('root')
 );
-
-// import reportWebVitals from './misc/reportWebVitals';
-// reportWebVitals(console.log);

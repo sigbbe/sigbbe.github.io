@@ -7,8 +7,6 @@ const test = 'test';
 for (let i = 1; i <= test.length; i++) {
     setTimeout(() => console.log(test.substr(0, i)), 1000 + i * 200);
 }
-console.log("sdfkjlsdfj");
-
 
 const App: FunctionComponent = () => {
     return (

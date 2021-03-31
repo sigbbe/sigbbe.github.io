@@ -1,13 +1,15 @@
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
+//not working: import ExtractTextPlugin from "extract-text-webpack-plugin";
+const ExtractHTMLPlugin = require("extract-html-webpack-plugin");
+const path = require('path');
 
-export const entry = 'index.js';
-export const output = {
-    title: 'sigbbe.github.io',
-    path: './dist',
-    filename: 'index_bundle.js',
-    minify: false
+// eslint-disable-next-line no-undef
+module.exports = {
+    output: {
+        filename: 'my-first-webpack.bundle.js',
+    },
+    module: {
+        rules: [{ test: /\.js$/, use: 'raw-loader' }, { test: /\.tsx$/, use: 'raw-loader' }, { test: /\.sass$/, use: 'sass-loader' }],
+    },
 };
-export const plugins = [
-    new HtmlWebpackPlugin()
-];
