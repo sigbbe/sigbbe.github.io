@@ -61,6 +61,7 @@ const AnimationHeadingOne: FC<AnimationHeadingOneProps> = ({title, typingSpeed}:
             }
             textToDelete = textToDelete?.replace('|', '');
             const interval = setInterval(() => {
+                isTyping();
                 if (textToDelete === null || textToDelete === undefined) {
                     return;
                 }
@@ -80,8 +81,10 @@ const AnimationHeadingOne: FC<AnimationHeadingOneProps> = ({title, typingSpeed}:
         setTimeout(() => {
             writeMessage(title);
             clearMessage();
-            writeMessage(title);
         }, 3000);
+        setTimeout(() => {
+            writeMessage('Comming soon!');
+        }, 12000);
     }, []);
 
     return (

@@ -25,6 +25,7 @@
     "rules": {
         "no-console": 0,
         "react/prop-types": "off",
-        "semi": ["error", "always"]
+        "semi": ["error", "always"], 
+        "quotes": ["warn", "single"]
     }
 }
