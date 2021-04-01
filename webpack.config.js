@@ -9,38 +9,49 @@ module.exports = {
     context: __dirname,
     mode: 'production',
     entry: './src/index.js',
+    devtool: 'inline-source-map',
+    module: {
+        rules: [
+            {
+                test: /\.js?$/,
+                exclude: /(node_modules|bower_components)/,
+                // exclude: /(node_modules)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ["@babel/preset-env"]
+                    }
+                },
+                // use: 'babel-loader',
+                // use: {
+                //     loader: 'babel-loader',
+                //     options: {
+                //         plugins: ['react-hot-loader/babel'],
+                //         presets: ['es2015', 'stage-0', 'react']
+                //     }
+                // },
+                // use: {
+                //     loader: 'babel-loader',
+                // },
+                // options: {
+                    // presets: ['@babel/preset-env']
+                // }, 
+                // query: {
+                // }
+            }
+            // {
+            //     test: /\.tsx?$/,
+            //     use: 'ts-loader',
+            //     exclude: /(node_modules)/,
+            // },
+        ]
+    }, 
+    resolve: {
+        extensions: ['tsx', 'ts', 'js'],
+    },
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
         publicPath: 'assets',
     },
-    // devServer: {
-    //     inline: false,
-    //     contentBase: './dist'
-    // },
-    resolve: {
-        extensions: ['js', 'ts', 'tsx'],
-        // root: path.join(__dirname, './src'),
-    },
-    module: {
-        rules: [
-        //     {
-        //         test: /\.jsx?$/,
-        //         exclude: /(node_modules|bower_components)/,
-        //         loader: 'babel-loader',
-        //         query: {
-        //             presets: ['es2015', 'react']
-        //         }
-        //     }
-            {
-                test: /\.jsx?$/,
-                loader: 'babel-loader',
-                exclude: [/node_modules/, /public/],
-                query: {
-                    plugins: ['react-hot-loader/babel', 'transform-runtime'],
-                    presets: ['es2015', 'stage-0', 'react']
-                }
-            }
-        ]
-    }
 };

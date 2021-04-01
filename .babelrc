@@ -1,7 +1,35 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "es2015",
+    "react",
+    "stage-3"
+  ],
   "plugins": [
+    "react-hot-loader/babel",
+    "transform-object-assign",
     "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-class-properties"
+    "@babel/plugin-proposal-class-properties", 
+    [
+      "transform-react-remove-prop-types",
+      {
+        "mode": "wrap",
+        "ignoreFilenames": [
+          "node_modules"
+        ]
+      }
+    ],
+    [
+      "babel-plugin-root-import",
+      {
+        "rootPathSuffix": "src",
+        "rootPathPrefix": "@"
+      },
+      {
+        "rootPathSuffix": "/",
+        "rootPathPrefix": "~"
+      }
+    ]
   ]
 }
