@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: '\'Press Start 2P\', cursive'
     },
     icon: {
-        fill: theme.palette.getContrastText('#ffffff'), 
+        fill: theme.palette.getContrastText('#ffffff'),
     }
 }));
 

@@ -10,7 +10,7 @@
     "react-hot-loader/babel",
     "@babel/transform-object-assign",
     "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-class-properties", 
+    "@babel/plugin-proposal-class-properties",
     "transform-react-remove-prop-types",
     "babel-plugin-root-import"
     ]
