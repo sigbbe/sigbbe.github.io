@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { getAllForwardSeq } from '../../utils/sandbox/SandBox';
-import './AnimationHeadingOne.sass';
 import Caret from './caret/Caret';
+import './AnimationHeadingOne.sass';
 
 type TypingSpeeds = 1 | 2 | 3;
 
@@ -92,7 +92,7 @@ const AnimationHeadingOne: FC<AnimationHeadingOneProps> = ({title, typingSpeed}:
             id={'Animation-heading'}
             className={'Non-selectable'}
         >
-            <div>{headingState}<Caret isTyping={caretState}/></div>
+            <div className={'Animation-text'}>{headingState}<Caret isTyping={caretState}/></div>
         </h1>
     );
 };
