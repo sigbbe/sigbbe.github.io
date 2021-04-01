@@ -8,28 +8,10 @@
   ],
   "plugins": [
     "react-hot-loader/babel",
-    "transform-object-assign",
+    "@babel/transform-object-assign",
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-proposal-class-properties", 
-    [
-      "transform-react-remove-prop-types",
-      {
-        "mode": "wrap",
-        "ignoreFilenames": [
-          "node_modules"
-        ]
-      }
-    ],
-    [
-      "babel-plugin-root-import",
-      {
-        "rootPathSuffix": "src",
-        "rootPathPrefix": "@"
-      },
-      {
-        "rootPathSuffix": "/",
-        "rootPathPrefix": "~"
-      }
+    "transform-react-remove-prop-types",
+    "babel-plugin-root-import"
     ]
-  ]
 }
