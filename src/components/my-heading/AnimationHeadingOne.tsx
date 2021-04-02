@@ -1,4 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { getAllForwardSeq } from '../../utils/sandbox/SandBox';
 import Caret from './caret/Caret';
 import './AnimationHeadingOne.sass';

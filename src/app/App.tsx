@@ -1,9 +1,10 @@
-import GitHubIcon from '@material-ui/icons/GitHub';
 import React, { FunctionComponent } from 'react';
+import { hot } from 'react-hot-loader/root';
 import MyButton from '../components/my-button/MyButton';
 import AnimationHeadingOne from '../components/my-heading/AnimationHeadingOne';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import Laettis from '../components/laettis/Laettis';
 import './App.sass';
-import Laettis from "../components/laettis/Laettis";
 
 const test = 'test';
 for (let i = 1; i <= test.length; i++) {
@@ -21,4 +22,4 @@ const App: FunctionComponent = () => {
         </>
     );
 };
-export default App;
+export default hot(App);

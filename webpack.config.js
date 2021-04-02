@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable no-undef */
-const path = require('path');
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { ProvidePlugin } = require('webpack');
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+const path = require('path');
+const { HotModuleReplacementPlugin } = webpack;
 
 const port = process.env.webpackDevPort || 3000;
 
@@ -14,29 +11,29 @@ module.exports = {
     context: __dirname,
     mode: 'production',
     entry: [
+        // 'react-hot-loader/patch',
         './src/index.js',
-        'react-hot-loader/patch'
     ],
-    devtool: 'inline-source-map',
+    devtool: process.env.WEBPACK_DEVTOOL || 'inline-source-map',
     resolve: {
-        extensions: ['tsx', 'ts', 'js'],
+        extensions: ['.tsx', '.ts', '.js', '.png'],
     },
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: 'assets',
+        publicPath: 'assets/',
     },
     plugins: [
         // enable HMR globally
-        new webpack.HotModuleReplacementPlugin(),
+        new HotModuleReplacementPlugin(),
         // do not emit compiled assets that include errors
         new HtmlWebpackPlugin({
             title: 'sigbbe.github.io',
-            filename: 'sigbbe_dev',
+            filename: 'index.html',
             favicon: './public/github.svg',
-            template: path.resolve(__dirname, 'public', 'index.html'),
+            template: path.resolve(__dirname, 'dist', 'index.html'),
             scriptLoading: 'defer',
-            minify: false
+            minify: true
         })
     ],
     module: {
@@ -46,24 +43,35 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-                test: /\.(js|jsx|tsx)?$/,
+                test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/,
-                // include: [path.resolve(__dirname, 'src/')],
-                // loaders: ['react-hot-loader/webpack']
-                use: ['react-hot-loader/babel', 'babel-loader']
-                // use: {
-                //     loader: 'babel-loader',
-                    // options: {
-                    //     plugins: ['react-hot-loader/babel'],
-                    //     presets: ['@babel/preset-env']
-                    // }
-                // },
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                        plugins: ['react-hot-loader/babel'],
+                    }
+                },
             },
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /(node_modules)/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'ts-loader',
+                },
             },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            bypassOnDebug: true, // webpack@1.x
+                            disable: true, // webpack@2.x and newer
+                        },
+                    }]
+            }
         ]
     }
 };
