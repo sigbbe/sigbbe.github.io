@@ -11,7 +11,7 @@ module.exports = {
     context: __dirname,
     mode: 'production',
     entry: [
-        // 'react-hot-loader/patch',
+        'react-hot-loader/patch',
         './src/index.js',
     ],
     devtool: process.env.WEBPACK_DEVTOOL || 'inline-source-map',
