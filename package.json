@@ -24,7 +24,7 @@
     "start": "react-scripts start",
     "build": "webpack --config webpack.config.js",
     "test": "react-scripts test",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build -b prod",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
     "eject": "react-scripts eject"
