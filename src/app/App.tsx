@@ -6,6 +6,7 @@ import MyButton from '../components/my-button/MyButton';
 import AnimationHeadingOne from '../components/my-heading/AnimationHeadingOne';
 import './App.sass';
 
+
 const App: FunctionComponent = () => {
     return (
         <>
