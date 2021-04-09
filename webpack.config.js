@@ -20,19 +20,17 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js', '.png'],
     },
     output: {
-        path: path.join(__dirname, 'dist'),
+        path: path.join(__dirname, 'build'),
         filename: 'bundle.js',
-        publicPath: 'assets/',
+        publicPath: './',
     },
     plugins: [
         // enable HMR globally
         new HotModuleReplacementPlugin(),
         // do not emit compiled assets that include errors
         new HtmlWebpackPlugin({
-            title: 'sigbbe.github.io',
             filename: 'index.html',
-            favicon: './public/github.svg',
-            template: path.resolve(__dirname, 'dist', 'index.html'),
+            template: path.resolve(__dirname, 'public', 'template.html'),
             scriptLoading: 'defer',
             minify: true
         })
