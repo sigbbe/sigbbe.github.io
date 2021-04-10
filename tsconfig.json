@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
+    "outDir": "./build/ts/out",
     "noImplicitAny": true,
     "module": "esnext",
     "target": "es5",
-    "jsx": "react-jsx",
+    "jsx": "react",
     "allowJs": true,
     "lib": [
       "dom",

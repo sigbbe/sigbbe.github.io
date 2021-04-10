@@ -1,4 +1,4 @@
-type MyStringArr = string [];
+type MyStringArr = string[];
 
 function getAllForwardSeq(msg: string): MyStringArr {
     const _ret = new Array<string>();

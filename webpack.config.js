@@ -1,7 +1,7 @@
 const { ProvidePlugin } = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// process.env.WEBPACK_DEVTOOL || 'inline-source-map';
 const webpack = require('webpack');
 const path = require('path');
 const { HotModuleReplacementPlugin } = webpack;
