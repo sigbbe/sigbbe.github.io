@@ -30,22 +30,55 @@
 	@keyframes #{$animationName}
 		@content
 
-@include keyframes(flicker)
-	0%
-		opacity: 0
-	49%
-		opacity: 0
-	50%
+.Non-selectable
+	-webkit-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+
+@include keyframes(pulsate)
+	from
+		height: 5px
+		width: 5px
 		opacity: 1
+	to
+		width: 50px
+		height: 50px
+		opacity: 0
 
-@mixin flicker
-	@include animate(flicker, 0s, 1.33s, infinite, normal)
+@include keyframes(test)
+	from
+		background-color: red
+	to
+		background-color: green
 
-#Caret
-	font-family: 'Times New Roman', Times, serif !important
-	display: inline
-	font-size: 2em
-	height: fit-content
+@mixin pulsate
+	@include animate(pulsate, 0s, 1s, 2, normal)
 
-#Caret.Not-typing
-	@include flicker
+#Animation-heading
+	position: relative
+	display: flex
+	justify-content: center
+	align-items: center
+	flex-direction: row
+	width: 100%
+
+#Animation-heading > *
+	color: black !important
+
+.Animation-text
+	text-align: center
+
+#pulsate
+	@include pulsate
+	position: relative
+	margin: auto
+	display: flex
+	border: 5px solid #000
+	border-radius: 50px
+	position: absolute
+	height: 50px
+	width: 50px
+
+.active
+	border: 2px solid black

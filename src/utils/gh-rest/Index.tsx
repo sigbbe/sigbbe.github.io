@@ -2,7 +2,7 @@
 
 const axios = require('axios');
 
-const GITHU_API_URI = (path?: string) => `https://api.github.com/${(path !== undefined) ? path : ''}`;
+const GITHU_API_URI = (path?: string) => `https://api.github.com/${path}`;
 
 interface Repository {
     name?: string;
