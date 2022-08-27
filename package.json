@@ -1,5 +1,5 @@
 {
-	"homepage": "https://sigbbe.github.io",
+	"homepage": "https://sigbbe.github.io/me",
 	"name": "sigbbe-github-io",
 	"version": "0.1.0",
 	"private": true,
@@ -7,7 +7,8 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
-		"preview": "vite preview"
+		"preview": "vite preview",
+		"deploy": "gh-pages -b master -d dist"
 	},
 	"dependencies": {
 		"@chakra-ui/react": "^2.2.9",
@@ -21,6 +22,7 @@
 		"axios": "^0.27.2",
 		"clsx": "^1.2.1",
 		"framer-motion": "^7.2.1",
+		"gh-pages": "^4.0.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-pdf": "^5.7.2",
