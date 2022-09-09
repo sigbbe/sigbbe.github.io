@@ -2,7 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import { ArrowBackIos, ArrowForwardIos, CloudDownload } from '@material-ui/icons';
 import { useState } from 'react';
 import { Document, Page } from 'react-pdf';
-import { MyActionButton, MyLinkButton } from '../components/my-button/MyButton';
+import MyButton from '../components/my-button/MyButton';
 import "./PdfFile.sass";
 
 export default function PdfFile({ file }: { file: string; }) {
@@ -28,7 +28,6 @@ export default function PdfFile({ file }: { file: string; }) {
 
 	const prevPageBtnDisabled = pageNumber <= 1;
 	const nextPageBtnDisabled = pageNumber >= (numPages || 0);
-	console.log(nextPageBtnDisabled);
 
 	return (
 		<>
@@ -43,23 +42,28 @@ export default function PdfFile({ file }: { file: string; }) {
 					canvasRef={ "canvasRef" }
 					pageNumber={ pageNumber } />
 			</Document >
-			<Box pos={ "fixed" } right="1.5em" top={ "1.5em" }>
-				<MyLinkButton
+			<Box pos={ "fixed" } right={"1.5em"} top={ "0.8em" }>
+				<MyButton
+					// onClick={ (evt: Event) => console.log(evt) }
 					href={ file }
 					text={ "Download" }
-					Icon={ CloudDownload }
-					newTab={ true } />
+					Icon={ <CloudDownload /> }
+					newTab={ true }
+					isAsset
+					download />
 			</Box>
-			<Text textAlign={ "center" }>Page { pageNumber }/{ numPages }</Text>
+			<Text
+				margin={ "3em 0 0 0" }
+				textAlign={ "center" }>Page { pageNumber }/{ numPages }</Text>
 			<Flex flexDir={ "row" } justifyContent={ "center" } alignItems={ "center" } >
-				<MyActionButton
+				<MyButton
 					text={ "Previous" }
-					Icon={ ArrowBackIos }
+					Icon={ <ArrowBackIos /> }
 					disabled={ prevPageBtnDisabled }
 					onClick={ previousPage } />
-				<MyActionButton
-					text={ "Previous" }
-					Icon={ ArrowForwardIos }
+				<MyButton
+					text={ "Next" }
+					Icon={ <ArrowForwardIos /> }
 					iconPlacement={ "right" }
 					disabled={ nextPageBtnDisabled }
 					onClick={ nextPage } />
