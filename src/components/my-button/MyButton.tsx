@@ -55,8 +55,10 @@ export interface MyButtonPropsI {
 
 const MyButton: FC<MyButtonPropsI> = (props: MyButtonPropsI) => {
 	const linkType = getLinkType(props.href);
-	console.log(linkType, props.href);
 	const children = <Button
+		minWidth={ "10em" }
+		isDisabled={ props.disabled }
+		onClick={ props.onClick }
 		disabled={ props.disabled }
 		rightIcon={ props.iconPlacement == "right" ? props.Icon : undefined }
 		leftIcon={ props.iconPlacement != "right" ? props.Icon : undefined }>
@@ -65,69 +67,3 @@ const MyButton: FC<MyButtonPropsI> = (props: MyButtonPropsI) => {
 	return <Box margin={ "1em" }>{ getLinkElement(linkType, props, children) }</Box>;
 };
 export default MyButton;
-
-// const ColorButton = withStyles((theme) => {
-// 	// theme.palette.getContrastText('#fafafa')
-// 	return {
-// 		root: {
-// 			color: "red",
-// 			fontFamily: "'Press Start 2P', cursive",
-// 			backgroundColor: '#ffffff',
-// 			'&:hover': {
-// 				backgroundColor: '#fafafa',
-// 			},
-// 		},
-// 	};
-// })(Button);
-
-// const useStyles = makeStyles((theme) => ({
-// 	margin: {
-// 		color: theme.palette.getContrastText('#ffffff'),
-// 		fontFamily: '\'Press Start 2P\', cursive',
-// 		margin: theme.spacing(1),
-// 		borderRadius: '0',
-// 		'&:hover': {
-// 			textDecoration: 'underline'
-// 		}
-// 	},
-// 	buttonText: {
-// 		color: theme.palette.getContrastText('#ffffff'),
-// 		textDecoration: 'none'
-// 	},
-// 	icon: {
-// 		fill: theme.palette.getContrastText('#ffffff'),
-// 	}
-// }));
-
-
-
-// const MyButton: FC<MyButtonPropsI> = (props: MyButtonPropsI) => {
-// 	const classes = useStyles();
-// 	// const linkType = getLinkType(props.href);
-// 	// const btn = <ColorButton
-// 	// 	disabled={ props.disabled }
-// 	// 	// variant="contained"
-// 	// 	// color="secondary"
-// 	// 	onClick={ props.onClick }
-// 	// 	startIcon={ props.iconPlacement == "left" && <props.Icon className={ classes.icon } /> }
-// 	// 	endIcon={ props.iconPlacement == "right" && <props.Icon className={ classes.icon } /> }
-// 	// 	className={ classes.margin }
-// 	// >{ props.text }</ColorButton>;
-// 	// const LinkElement = getLinkElement(linkType, props, btn, classes);
-// 	// console.log(LinkElement);
-// 	// return LinkElement;
-// 	return (
-// 		<Button>
-// 			{ getLinkElement(getLinkType(props.href), props, <ColorButton />, classes) }
-// 			{/* <ColorButton
-// 				disabled={ props.disabled }
-// 				// variant="contained"
-// 				// color="secondary"
-// 				disableFocusRipple={ true }
-// 				onClick={ props.onClick }
-// 				startIcon={ props.iconPlacement == "left" || props.iconPlacement == undefined && <props.Icon className={ classes.icon } /> }
-// 				endIcon={ props.iconPlacement == "right" && <props.Icon className={ classes.icon } /> }
-// 			>{ props.text }</ColorButton> */}
-// 		</Button>
-// 	);
-// };

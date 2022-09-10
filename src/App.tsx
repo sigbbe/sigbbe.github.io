@@ -1,22 +1,43 @@
 import { Flex } from '@chakra-ui/react';
 import { AccountBox, GitHub, LinkedIn } from '@material-ui/icons';
+import JSConfetti from 'js-confetti';
 import './App.sass';
 import SigbbeIcon from './components/laettis/SigbbeIcon';
 import MyButton from './components/my-button/MyButton';
 import { TypeWriterAnimationContent, TypeWriterAnimationHeading } from './components/my-heading/TypeWriterAnimationHeading';
 
+const breakpoints = {
+	sm: '30em',
+	md: '48em',
+	lg: '62em',
+	xl: '80em',
+	'2xl': '96em',
+};
+
 export default function App() {
+
+	const jsConfetti = new JSConfetti();
+
+	const showConfetti = () => {
+		jsConfetti.addConfetti({
+			emojis: ['🚀', '⚡️', '🤠', '✨', '💫', '🔥', '🦄', '🌙'],
+		});
+	};
 	return (
 		<>
-			<Flex className={ 'Flex-center Flex-column Full-size' }>
+			<Flex
+				onClick={ showConfetti }
+				className={ 'Flex-center Flex-column Full-size' }>
 				<SigbbeIcon size={ "xl" } />
 				<TypeWriterAnimationHeading typingSpeed={ 3 }>
 					<TypeWriterAnimationContent>{ "Updates comming soon :)" }</TypeWriterAnimationContent>
 					<TypeWriterAnimationContent>{ "Sigbjørn Berdal's homepage🚀" }</TypeWriterAnimationContent>
 				</TypeWriterAnimationHeading>
 				<Flex
+					flexDir={ { base: "column", md: "row" } }
 					w={ "100vw" }
 					margin={ "2em auto 2em auto" }
+					alignItems={ "center" }
 					justifyContent={ "center" }>
 					<MyButton
 						href={ 'https://github.com/sigbbe' }
@@ -35,7 +56,7 @@ export default function App() {
 						newTab />
 				</Flex>
 			</Flex>
-			{/* <MyFooter /> */}
+			{/* <MyFooter /> */ }
 		</>
 	);
 };
