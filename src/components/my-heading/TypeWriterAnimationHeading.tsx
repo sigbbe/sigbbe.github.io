@@ -101,13 +101,10 @@ const TypeWriterAnimationHeading: FC<TypeWriterAnimationHeadingPropsI> = ({ chil
 
 	useEffect(() => {
 		let time = 0;
-		console.log(children.slice(0, children.length - 1).map(t => t.props.children));
 		children.slice(0, children.length - 1).forEach((el, i) => {
 			const msg = el.props.children;
 			const startTime = now() + delay;
 			const endTime = startTime + delay;
-			// console.log(`startTime=${new Date(startTime)}`);
-			// console.log(`endTime=${new Date(endTime)}`);
 			writeMessage(msg, i, startTime, typingSpeed);
 			clearMessage(msg, endTime);
 			time = endTime;

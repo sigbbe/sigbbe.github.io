@@ -24,17 +24,20 @@ function getLinkElement(linkType: LinkType, props: MyButtonPropsI, children: Rea
 			return <> { children }</>;
 		case LinkType.External:
 			return <Link
+				tabIndex={ -1 }
 				href={ props.href }
 				download={ props.download }
 				target={ props.newTab ? '__blank' : '_self' }>{ children }</Link>;
 		case LinkType.Internal:
 			if (!props.isAsset) {
 				return <RouterLink
+					tabIndex={ -1 }
 					to={ { pathname: props.href } }
 					target={ props.newTab ? '__blank' : '_self' }
 					download={ props.download }>{ children }</RouterLink>;
 			}
 			return <Link
+				tabIndex={ -1 }
 				href={ `${window.location.origin}${props.href?.replaceAll("#", "")}` }
 				download={ props.download }
 				target={ props.newTab ? '__blank' : '_self' }>{ children }</Link>;
